@@ -9,10 +9,17 @@ const heading = document.querySelector("h1");
 heading.textContent = data.currentConditions.icon
 
 const condition = data.currentConditions.icon
+getGif(condition);
 }
 
 async function getGif(gifName) {
+    const response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=9IMEPOdTe6ckZOL3PGlB8AYx5kDFUgao&s=${gifName}`)
+    
+    const image = document.querySelector("img");
+    const gif = await response.json();
+    console.log(gif);
 
+    image.src = gif.data.images.original.url;
 }
 
 const inp = document.querySelector("input");
@@ -31,4 +38,4 @@ console.log(city);
 })
 
 
-// `https://api.giphy.com/v1/gifs/translate?api_key=9IMEPOdTe6ckZOL3PGlB8AYx5kDFUgao&s=${}`
+
